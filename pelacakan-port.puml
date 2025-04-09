@@ -1,0 +1,17 @@
+@startuml
+actor pengguna
+actor "front-end" as fe
+boundary Router as router
+boundary Server as srv
+control Resolver as resolver
+database "database" as db
+
+pengguna -> fe: mencari port
+fe -> router: forward request sebagai query graphql di endpoint `/query`
+router -> srv
+srv -> db: otorisasi uuid
+db -> srv: uuid valid
+srv -> resolver
+resolver -> fe: respon port dapat dipakai / belum ter registrasi
+fe -> pengguna: tampilkan port dapat dipakai
+@enduml
