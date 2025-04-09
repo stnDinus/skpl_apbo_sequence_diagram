@@ -7,7 +7,7 @@ control Resolver as resolver
 database "database" as db
 
 pengguna -> fe: mencari port
-fe -> router: forward request sebagai query graphql di endpoint `/`
+fe -> router: forward request sebagai query graphql di endpoint `/query`
 router -> srv
 srv -> db: otorisasi uuid
 db -> srv: uuid valid
