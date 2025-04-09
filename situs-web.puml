@@ -1,0 +1,7 @@
+@startuml
+actor pengguna
+actor "front-end" as fe
+
+pengguna -> fe: request
+fe -> pengguna: response halaman awal
+@enduml

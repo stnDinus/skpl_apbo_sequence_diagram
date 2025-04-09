@@ -1,0 +1,10 @@
+@startuml
+actor "back-end" as be
+control Resolver as resolver
+actor IANA
+
+be -> resolver: Penambangan port
+resolver -> IANA: Request
+IANA -> resolver: Response
+resolver -> resolver: Proses csv
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+actor "pengembang pihak ketiga / front-end" as req
+boundary Router as router
+boundary Server as srv
+control Resolver as resolver
+database "database" as db
+
+req -> router: request sebagai query graphql di endpoint `/query`
+router -> srv
+srv -> db: otorisasi uuid
+db -> srv: uuid valid
+srv -> srv: kelola langkah selanjutnya
+@enduml

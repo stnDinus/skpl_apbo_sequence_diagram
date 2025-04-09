@@ -1,0 +1,7 @@
+@startuml
+actor "back-end" as be
+control Resolver as resolver
+
+be -> resolver: Pencarian port
+resolver -> be: Port ditemukan
+@enduml
