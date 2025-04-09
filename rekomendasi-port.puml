@@ -1,0 +1,18 @@
+@startuml
+actor pengguna
+participant "situs web" as web
+actor "front-end" as fe
+actor "back-end" as be
+actor "database" as db
+
+pengguna -> web: mencari port
+web -> fe: request
+fe -> be: forward request sebagai query graphql terotorisasi
+be -> db: periksa uuid
+db -> be: uuid valid
+be -> fe: response graphql, port ter registrasi
+fe -> be: request graphql rekomendasi port
+be -> fe: response graphql rekomendasi port
+fe -> web
+web -> pengguna
+@enduml
