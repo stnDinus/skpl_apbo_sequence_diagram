@@ -1,18 +1,23 @@
 @startuml
 actor pengguna
-participant "situs web" as web
 actor "front-end" as fe
-actor "back-end" as be
-actor "database" as db
+boundary Router as router
+boundary Server as srv
+control Resolver as resolver
+database "database" as db
 
-pengguna -> web: mencari port
-web -> fe: request
-fe -> be: forward request sebagai query graphql terotorisasi
-be -> db: periksa uuid
-db -> be: uuid valid
-be -> fe: response graphql, port ter registrasi
-fe -> be: request graphql rekomendasi port
-be -> fe: response graphql rekomendasi port
-fe -> web
-web -> pengguna
+pengguna -> fe: mencari port
+fe -> router: forward request sebagai query graphql di endpoint `/`
+router -> srv
+srv -> db: otorisasi uuid
+db -> srv: uuid valid
+srv -> resolver
+resolver -> fe: respon port tidak ditemukan pada himpunan / belum ter registrasi
+fe -> router: request rekomendasi port
+router -> srv
+srv -> db
+db -> srv
+srv -> resolver
+resolver -> fe: respon rekomendasi port
+fe -> pengguna: tampilkan rekomendasi port
 @enduml
