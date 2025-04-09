@@ -12,7 +12,7 @@ router -> srv
 srv -> db: otorisasi uuid
 db -> srv: uuid valid
 srv -> resolver
-resolver -> fe: respon port tidak ditemukan pada himpunan / belum ter registrasi
+resolver -> fe: respon port ditemukan pada himpunan / telah ter registrasi
 fe -> router: request rekomendasi port
 router -> srv
 srv -> db
